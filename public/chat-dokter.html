@@ -148,6 +148,10 @@
                 }
             };
 
+            sessionStorage.setItem('selectedDoctor', JSON.stringify(doctorData[doctorId]));
+
+
+
             document.getElementById('doctor-list').classList.add('hidden');
             document.getElementById('chat-container').classList.remove('hidden');
             document.getElementById('chat-doctor-name').innerText = doctorData[doctorId].name;
@@ -169,10 +173,13 @@
                 message.textContent = chatInput.value;
 
                 chatMessages.appendChild(message);
-                chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
-                chatInput.value = ''; // Clear input field
+                chatMessages.scrollTop = chatMessages.scrollHeight; 
+                chatInput.value = ''; 
             }
         }
+
+
+
     </script>
 </body>
 </html>

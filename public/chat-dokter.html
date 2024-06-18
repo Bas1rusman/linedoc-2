@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat dengan Dokter</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="logo.jpg" type="image/x-icon">
+    <style>
+        .hidden { display: none; }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto py-8">
+        <!-- Daftar Dokter -->
+        <div id="doctor-list" class="w-full max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6">
+            <h1 class="text-2xl font-bold mb-6">Pilih Dokter</h1>
+            <h2 class="text-xl font-semibold mb-4">Dokter Rekomendasi</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                <div class="cursor-pointer" onclick="showChat('dr-andi')">
+                    <div class="bg-white border border-gray-300 p-4 rounded-lg flex items-center">
+                        <img src="dokter2.jpg" alt="Dr. Alifa Hariyanto" class="w-40 h-40 object-cover rounded-lg">
+                        <div class="ml-4 flex flex-col justify-between h-full">
+                            <div>
+                                <h3 class="text-lg font-semibold">Dr. Alifa Hariyanto</h3>
+                                <p class="text-gray-500">Spesialis Jantung</p>
+                                <p class="text-gray-700">Harga: Rp500.000</p>
+                                <p class="text-gray-700">Rating: 4.8/5</p>
+                                <p class="text-gray-700">Pengalaman: 10 tahun</p>
+                            </div>
+                            <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 self-start">Chat</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="cursor-pointer" onclick="showChat('dr-budi')">
+                    <div class="bg-white border border-gray-300 p-4 rounded-lg flex items-center">
+                        <img src="dokter3.jpg" alt="Dr. Adinta Agustia" class="w-40 h-40 object-cover rounded-lg">
+                        <div class="ml-4 flex flex-col justify-between h-full">
+                            <div>
+                                <h3 class="text-lg font-semibold">Dr. Adinta Agustia</h3>
+                                <p class="text-gray-500">Spesialis Kulit</p>
+                                <p class="text-gray-700">Harga: Rp450.000</p>
+                                <p class="text-gray-700">Rating: 4.7/5</p>
+                                <p class="text-gray-700">Pengalaman: 8 tahun</p>
+                            </div>
+                            <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 self-start">Chat</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h2 class="text-xl font-semibold mb-4">Dokter Spesialis</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="cursor-pointer" onclick="showChat('dokter umum')">
+                    <div class="bg-white border border-gray-300 p-4 rounded-lg flex items-center">
+                        <img src="dokter1.jpg" alt="Dr. Eka" class="w-12 h-12 object-cover rounded-lg mr-4">
+                        <div>
+                            <h3 class="text-sm font-semibold">Dokter Umum</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="cursor-pointer" onclick="showChat('kandungan')">
+                    <div class="bg-white border border-gray-300 p-4 rounded-lg flex items-center">
+                        <img src="kandungan.jpg" alt="Dr. Fahmi" class="w-12 h-12 object-cover rounded-lg mr-4">
+                        <div>
+                            <h3 class="text-sm font-semibold">Kandungan</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="cursor-pointer" onclick="showChat('dr-hewan')">
+                    <div class="bg-white border border-gray-300 p-4 rounded-lg flex items-center">
+                        <img src="dokterhewan.jpg" alt="Dr. Gita" class="w-12 h-12 object-cover rounded-lg mr-4">
+                        <div>
+                            <h3 class="text-sm font-semibold">Dokter Hewan</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="cursor-pointer" onclick="showChat('psikiater')">
+                    <div class="bg-white border border-gray-300 p-4 rounded-lg flex items-center">
+                        <img src="psikiater.jpg" alt="Dr. Hana" class="w-12 h-12 object-cover rounded-lg mr-4">
+                        <div>
+                            <h3 class="text-sm font-semibold">Psikiater</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Dokter -->
+        <div id="chat-container" class="w-full max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6 hidden">
+            <div class="border-b border-gray-200 pb-6 mb-6">
+                <div class="flex items-center space-x-4">
+                    <img id="chat-doctor-img" src="" alt="Doctor" class="w-16 h-16 rounded-full">
+                    <div>
+                        <h2 id="chat-doctor-name" class="text-xl font-semibold"></h2>
+                        <p class="text-gray-500">Tersedia</p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 pt-6">
+                <button onclick="goBack()" class="mb-4 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">Kembali</button>
+                <h2 class="text-lg font-semibold mb-4">Mulai Chat</h2>
+                <div class="bg-gray-100 p-4 rounded-lg h-96 overflow-y-scroll">
+                    <div class="space-y-4" id="chat-messages">
+                    </div>
+                </div>
+                <div class="mt-4 flex">
+                    <input type="text" id="chat-input" class="flex-grow p-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300" placeholder="Ketik pesan...">
+                    <button onclick="sendMessage()" class="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600">Kirim</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showChat(doctorId) {
+            const doctorData = {
+                'dr-andi': {
+                    name: 'Dr. Alifa Hariyanto, Spesialis Jantung',
+                    img: 'dokter2.jpg'
+                },
+                'dr-budi': {
+                    name: 'Dr. Adinta Agustia, Spesialis Kulit',
+                    img: 'dokter3.jpg'
+                },
+                'dr-chandra': {
+                    name: 'Dr. Chandra, Spesialis Mata',
+                    img: 'https://via.placeholder.com/150'
+                },
+                'dr-dina': {
+                    name: 'Dr. Dina, Spesialis Anak',
+                    img: 'https://via.placeholder.com/150'
+                },
+                'dokter umum': {
+                    name: 'Dokter Umum',
+                    img: 'dokter1.jpg'
+                },
+                'kandungan': {
+                    name: 'Kandungan',
+                    img: 'kandungan.jpg'
+                },
+                'dr-hewan': {
+                    name: 'Dokter Hewan',
+                    img: 'dokterhewan.jpg'
+                },
+                'psikiater': {
+                    name: 'Psikiater',
+                    img: 'psikiater.jpg'
+                }
+            };
+
+            document.getElementById('doctor-list').classList.add('hidden');
+            document.getElementById('chat-container').classList.remove('hidden');
+            document.getElementById('chat-doctor-name').innerText = doctorData[doctorId].name;
+            document.getElementById('chat-doctor-img').src = doctorData[doctorId].img;
+        }
+
+        function goBack() {
+            document.getElementById('chat-container').classList.add('hidden');
+            document.getElementById('doctor-list').classList.remove('hidden');
+        }
+
+        function sendMessage() {
+            const chatInput = document.getElementById('chat-input');
+            const chatMessages = document.getElementById('chat-messages');
+
+            if (chatInput.value.trim() !== '') {
+                const message = document.createElement('div');
+                message.classList.add('p-4', 'bg-blue-100', 'rounded-lg', 'self-end', 'w-fit', 'max-w-xs');
+                message.textContent = chatInput.value;
+
+                chatMessages.appendChild(message);
+                chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to the bottom
+                chatInput.value = ''; // Clear input field
+            }
+        }
+    </script>
+</body>
+</html>
+
+

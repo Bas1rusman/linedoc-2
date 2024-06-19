@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lokasi Terdekat</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="logo.jpg" type="image/x-icon">
+    <style>
+        /* Custom styles */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+        .search-bar {
+            width: 100%;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .left-panel, .right-panel {
+            width: 100%;
+            padding: 20px;
+        }
+        .left-panel {
+            background-color: #f3f4f6;
+            border-radius: 8px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .nearest-location {
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        .location-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .location-info p {
+            margin: 0;
+        }
+        .rating {
+            display: inline-block;
+            background-color: #edf2f7;
+            color: #718096;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+        .open-24 {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Search bar -->
+        <div class="search-bar">
+            <input type="text" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-200" placeholder="Cari lokasi terdekat...">
+        </div>
+
+        <!-- Panel kiri: Informasi Lokasi Terdekat -->
+        <div class="left-panel">
+            <h2 class="text-lg font-semibold mb-4">Lokasi Terdekat</h2>
+            <div class="nearest-location">
+                <div class="location-info">
+                    <p class="font-bold">RS TMC Tasikmalaya</p>
+                    <span class="rating">4.5 ★</span>
+                </div>
+                <p>Rumah sakit Umum</p>
+                <p>Jarak: 1,8 km</p>
+                <p class="open-24">Buka 24 Jam</p>
+            </div>
+            <div class="nearest-location">
+                <div class="location-info">
+                    <p class="font-bold">Rumah Sakit Umum Daerah Soekarjo</p>
+                    <span class="rating">4.8 ★</span>
+                </div>
+                <p>Alamat Lokasi</p>
+                <p>Jarak: 2,7 km</p>
+                <p class="open-24">Buka 24 Jam</p>
+            </div>
+            <div class="nearest-location">
+                <div class="location-info">
+                    <p class="font-bold">RS Islam Hj. Siti Muniroh Tasikmalaya</p>
+                    <span class="rating">4.8 ★</span>
+                </div>
+                <p>Alamat Lokasi</p>
+                <p>Jarak: 2,9 km</p>
+                <p class="open-24">Buka 24 Jam</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
